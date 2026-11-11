@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nexus AI — Online E-Book Reading Platform & AI Assistant</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #030612;
+        --panel: rgba(10, 16, 32, 0.75);
+        --accent: #00f2fe;
+        --pink: #ff007f;
+        --purple: #7928ca;
+        --text: #f8fafc;
+        --muted: #94a3b8;
+        --border: rgba(0, 242, 254, 0.25);
+        --shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(0, 242, 254, 0.15);
+      }
+
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      body {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        min-height: 100vh;
+        line-height: 1.6;
+        overflow-x: hidden;
+        background-image: 
+          radial-gradient(circle at 10% 15%, rgba(0, 242, 254, 0.15), transparent 30%),
+          radial-gradient(circle at 90% 20%, rgba(255, 0, 127, 0.14), transparent 28%),
+          radial-gradient(circle at 50% 80%, rgba(121, 40, 202, 0.15), transparent 35%);
+      }
+
+      /* Navbar */
+      .nexus-nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.8rem 2rem;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        backdrop-filter: blur(20px);
+        background: rgba(4, 7, 18, 0.88);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .nexus-brand {
+        display: flex;
+        align-items: center;
+        gap: 0.7rem;
+        text-decoration: none;
+        color: #fff;
+        font-family: 'Outfit', sans-serif;
+        font-size: 1.25rem;
+        font-weight: 800;
+      }
+
+      .nexus-brand-icon {
+        width: 36px;
+        height: 36px;
+        border-radius: 10px;
+        background: linear-gradient(135deg, #00f2fe, #ff007f);
+        display: grid;
+        place-items: center;
+        font-size: 1.1rem;
+        box-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 1.8rem;
+        align-items: center;
+      }
+
+      .nav-links a {
+        color: var(--muted);
+        text-decoration: none;
+        font-size: 0.94rem;
+        font-weight: 500;
+        transition: color 0.2s ease;
+      }
+
+      .nav-links a:hover { color: var(--text); }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.65rem 1.2rem;
+        border-radius: 999px;
+        font-weight: 700;
+        text-decoration: none;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: all 0.25s ease;
+        border: 1px solid transparent;
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, #00f2fe, #ff007f);
+        color: #fff;
+        box-shadow: 0 0 20px rgba(0, 242, 254, 0.3);
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 0 30px rgba(0, 242, 254, 0.5);
+      }
+
+      .btn-secondary {
+        background: rgba(255, 255, 255, 0.05);
+        border-color: var(--border);
+        color: var(--text);
+      }
+
+      .btn-secondary:hover {
+        background: rgba(0, 242, 254, 0.15);
+        border-color: var(--accent);
+      }
+
+      /* Hero Section */
+      .hero-section {
+        max-width: 1200px;
+        margin: 3.5rem auto 2rem;
+        padding: 0 1.5rem;
+        text-align: center;
+      }
+
+      .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.4rem 1rem;
+        border-radius: 999px;
+        background: rgba(0, 242, 254, 0.1);
+        border: 1px solid rgba(0, 242, 254, 0.3);
+        color: var(--accent);
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 0.85rem;
+        margin-bottom: 1.4rem;
+      }
+
+      .hero-title {
+        font-family: 'Outfit', sans-serif;
+        font-size: clamp(2.4rem, 5vw, 4.2rem);
+        font-weight: 800;
+        line-height: 1.1;
+        margin-bottom: 1.2rem;
+        background: linear-gradient(135deg, #ffffff 30%, #00f2fe 70%, #ff007f 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .hero-desc {
+        font-size: 1.15rem;
+        color: var(--muted);
+        max-width: 780px;
+        margin: 0 auto 2rem;
+      }
+
+      .hero-actions {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-bottom: 3rem;
+        flex-wrap: wrap;
+      }
+
+      /* Features Grid */
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 1.5rem;
+        max-width: 1200px;
+        margin: 0 auto 4rem;
+        padding: 0 1.5rem;
+      }
+
+      .feature-card {
+        padding: 1.6rem;
+        border-radius: 20px;
+        background: var(--panel);
+        border: 1px solid var(--border);
+        transition: all 0.3s ease;
+      }
+
+      .feature-card:hover {
+        transform: translateY(-4px);
+        border-color: var(--accent);
+        box-shadow: var(--shadow);
+      }
+
+      .feature-icon {
+        font-size: 2rem;
+        margin-bottom: 0.8rem;
+        display: block;
+      }
+
+      .feature-title {
+        font-family: 'Outfit', sans-serif;
+        font-size: 1.2rem;
+        margin-bottom: 0.4rem;
+      }
+
+      .feature-desc {
+        font-size: 0.93rem;
+        color: var(--muted);
+      }
+
+      /* Book Catalog Section */
+      .catalog-section {
+        max-width: 1200px;
+        margin: 0 auto 5rem;
+        padding: 0 1.5rem;
+      }
+
+      .section-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        margin-bottom: 2rem;
+      }
+
+      .section-title {
+        font-family: 'Outfit', sans-serif;
+        font-size: 2rem;
+      }
+
+      .book-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        gap: 1.8rem;
+      }
+
+      .catalog-card {
+        border-radius: 20px;
+        overflow: hidden;
+        background: var(--panel);
+        border: 1px solid var(--border);
+        transition: all 0.3s ease;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .catalog-card:hover {
+        transform: translateY(-5px);
+        border-color: var(--accent);
+        box-shadow: var(--shadow);
+      }
+
+      .catalog-cover {
+        height: 200px;
+        object-fit: cover;
+        width: 100%;
+      }
+
+      .catalog-body {
+        padding: 1.2rem;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        gap: 0.6rem;
+      }
+
+      .catalog-tag {
+        font-size: 0.75rem;
+        font-family: 'Space Grotesk', sans-serif;
+        color: var(--accent);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+      }
+
+      .catalog-book-title {
+        font-family: 'Outfit', sans-serif;
+        font-size: 1.15rem;
+        font-weight: 700;
+      }
+
+      .catalog-author {
+        font-size: 0.85rem;
+        color: var(--muted);
+      }
+
+      /* Reader Modal Overlay */
+      .reader-modal {
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 1000;
+        background: rgba(3, 5, 12, 0.95);
+        backdrop-filter: blur(20px);
+      }
+
+      .reader-modal.active { display: block; }
+
+      .modal-iframe-bar {
+        height: 55px;
+        background: rgba(6, 10, 22, 0.95);
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 1.5rem;
+      }
+
+      .close-modal-btn {
+        background: rgba(255, 0, 127, 0.15);
+        border: 1px solid var(--pink);
+        color: #fff;
+        padding: 0.4rem 0.9rem;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 600;
+      }
+
+      .reader-modal-body {
+        height: calc(100vh - 55px);
+        display: grid;
+        grid-template-columns: 280px 1fr 360px;
+      }
+
+      .modal-sidebar {
+        border-right: 1px solid var(--border);
+        background: rgba(8, 12, 24, 0.8);
+        padding: 1.2rem;
+        overflow-y: auto;
+      }
+
+      .modal-main {
+        padding: 2rem 3rem;
+        overflow-y: auto;
+        line-height: 1.85;
+      }
+
+      .modal-ai-chat {
+        border-left: 1px solid var(--border);
+        background: rgba(6, 9, 20, 0.9);
+        display: flex;
+        flex-direction: column;
+      }
+
+      .chat-box { flex: 1; padding: 1rem; overflow-y: auto; display: flex; flex-direction: column; gap: 0.8rem; }
+      .msg-ai { background: rgba(255,255,255,0.05); border: 1px solid var(--border); padding: 0.8rem; border-radius: 12px; font-size: 0.9rem; }
+      .msg-user { background: linear-gradient(135deg, #00f2fe, #38bdf8); color: #000; font-weight: 600; padding: 0.8rem; border-radius: 12px; font-size: 0.9rem; align-self: flex-end; }
+
+      @media (max-width: 900px) {
+        .reader-modal-body { grid-template-columns: 1fr; height: auto; }
+        .modal-sidebar, .modal-ai-chat { display: none; }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="nexus-nav">
+      <a href="index.html" class="nexus-brand">
+        <div class="nexus-brand-icon">🤖</div>
+        <span>Nexus AI</span>
+      </a>
+      <div class="nav-links">
+        <a href="#features">AI Features</a>
+        <a href="#catalog">E-Book Catalog</a>
+        <a href="projects.html" class="btn btn-secondary">← Portfolio Projects</a>
+        <button onclick="openLiveReader('The Future of AI')" class="btn btn-primary">Start Reading Online ↗</button>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero-section">
+      <div class="hero-badge">
+        <span>✨ Powered by Gemini 1.5 RAG Engine</span>
+      </div>
+      <h1 class="hero-title">Read Any Book Online With An Intelligent AI Tutor</h1>
+      <p class="hero-desc">Nexus AI turns passive reading into an active discussion. Read digital books online, ask instant questions, extract chapter summaries, and translate complex concepts in real-time.</p>
+      
+      <div class="hero-actions">
+        <button onclick="openLiveReader('The Future of AI')" class="btn btn-primary" style="font-size: 1rem; padding: 0.85rem 1.8rem;">Open Online E-Book Reader 📖</button>
+        <a href="projects.html" class="btn btn-secondary" style="font-size: 1rem; padding: 0.85rem 1.8rem;">Back to Game Axis Portfolio</a>
+      </div>
+    </header>
+
+    <!-- AI Features Grid -->
+    <section class="features-grid" id="features">
+      <div class="feature-card">
+        <span class="feature-icon">🤖</span>
+        <h3 class="feature-title">Real-Time AI Tutor (RAG)</h3>
+        <p class="feature-desc">Chat directly with an AI context assistant trained specifically on the chapter you are reading for zero-hallucination answers.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">⚡</span>
+        <h3 class="feature-title">1-Click Chapter Summaries</h3>
+        <p class="feature-desc">Instantly extract key takeaways, executive summaries, and core formulas with a single tap while reading.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🌍</span>
+        <h3 class="feature-title">Instant Translation</h3>
+        <p class="feature-desc">Translate highlighted paragraphs or entire chapters into 50+ languages with contextual accuracy.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">📚</span>
+        <h3 class="feature-title">Personal Cloud Workspace</h3>
+        <p class="feature-desc">Save your reading progress, bookmarks, custom AI notes, and highlights across all desktop and mobile devices.</p>
+      </div>
+    </section>
+
+    <!-- Book Catalog Grid -->
+    <section class="catalog-section" id="catalog">
+      <div class="section-header">
+        <div>
+          <p class="hero-badge" style="margin-bottom: 0.4rem;">AI-Indexed Library</p>
+          <h2 class="section-title">Explore Featured AI E-Books</h2>
+        </div>
+      </div>
+
+      <div class="book-grid">
+        <div class="catalog-card">
+          <img class="catalog-cover" src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=600&q=70" alt="Book Cover" />
+          <div class="catalog-body">
+            <span class="catalog-tag">AI & Computer Science</span>
+            <h3 class="catalog-book-title">The Future of Agentic AI</h3>
+            <p class="catalog-author">By M Raza & Game Axis</p>
+            <button onclick="openLiveReader('The Future of Agentic AI')" class="btn btn-primary" style="margin-top: auto; width: 100%;">Read Online Free 📖</button>
+          </div>
+        </div>
+
+        <div class="catalog-card">
+          <img class="catalog-cover" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=600&q=70" alt="Book Cover" />
+          <div class="catalog-body">
+            <span class="catalog-tag">Full-Stack Architecture</span>
+            <h3 class="catalog-book-title">Modern MERN Stack Mastery</h3>
+            <p class="catalog-author">By Abdul Rafay & Abdul Rehman</p>
+            <button onclick="openLiveReader('Modern MERN Stack Mastery')" class="btn btn-primary" style="margin-top: auto; width: 100%;">Read Online Free 📖</button>
+          </div>
+        </div>
+
+        <div class="catalog-card">
+          <img class="catalog-cover" src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=600&q=70" alt="Book Cover" />
+          <div class="catalog-body">
+            <span class="catalog-tag">CMS & Visual Web</span>
+            <h3 class="catalog-book-title">Webflow & Framer Architecture</h3>
+            <p class="catalog-author">By Ghazi & Aliyan</p>
+            <button onclick="openLiveReader('Webflow & Framer Architecture')" class="btn btn-primary" style="margin-top: auto; width: 100%;">Read Online Free 📖</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Reader Modal App -->
+    <div class="reader-modal" id="readerModal">
+      <div class="modal-iframe-bar">
+        <div style="display: flex; align-items: center; gap: 0.6rem;">
+          <span style="color: var(--accent); font-weight: 700;">📖 Nexus AI Reader:</span>
+          <span id="activeBookTitle" style="color: #fff; font-weight: 600;">The Future of Agentic AI</span>
+        </div>
+        <button class="close-modal-btn" onclick="closeLiveReader()">✕ Exit Reader</button>
+      </div>
+
+      <div class="reader-modal-body">
+        <div class="modal-sidebar">
+          <p style="color: var(--accent); font-size: 0.8rem; font-family: 'Space Grotesk'; margin-bottom: 0.8rem;">TABLE OF CONTENTS</p>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.5rem; color: var(--muted); font-size: 0.9rem;">
+            <li style="color: var(--accent); font-weight: 600;">Ch 1. Autonomous AI Systems</li>
+            <li>Ch 2. Retrieval-Augmented Generation</li>
+            <li>Ch 3. Vector Database Embeddings</li>
+            <li>Ch 4. Building Production RAG Pipelines</li>
+          </ul>
+        </div>
+
+        <div class="modal-main">
+          <h1>Chapter 1: Autonomous AI Systems & RAG</h1>
+          <p style="color: var(--accent); font-size: 0.9rem; margin-bottom: 1.5rem;">AI Tutor Status: Online • 1-Click Summarizer Active</p>
+          <p>Artificial Intelligence has evolved from passive text predictors into active autonomous agents. Through modern vector stores and RAG architecture, digital books are no longer static text—they are interactive conversations.</p>
+          <div style="background: rgba(0, 242, 254, 0.08); border-left: 3px solid #00f2fe; padding: 1rem; margin: 1.5rem 0; font-style: italic;">
+            "With Nexus AI, every paragraph becomes a live dialogue between the reader and the intelligent assistant."
+          </div>
+          <p>Highlight any passage or use the right-hand panel to ask questions, request instant translations, or test your comprehension with AI quizzes.</p>
+        </div>
+
+        <div class="modal-ai-chat">
+          <div style="padding: 1rem; border-bottom: 1px solid var(--border); font-weight: 700;">🤖 Gemini AI Reading Tutor</div>
+          <div class="chat-box" id="modalChat">
+            <div class="msg-ai">Hello! Ask me any question about Chapter 1 or click a quick prompt below!</div>
+          </div>
+          <div style="padding: 0.8rem; border-top: 1px solid var(--border); display: flex; gap: 0.4rem;">
+            <input type="text" id="modalInput" placeholder="Ask AI tutor..." style="flex: 1; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 8px; padding: 0.5rem; color: #fff;" />
+            <button onclick="handleModalChat()" class="btn btn-primary" style="padding: 0.5rem 0.8rem; font-size: 0.85rem;">Ask</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function openLiveReader(title) {
+        document.getElementById('activeBookTitle').textContent = title;
+        document.getElementById('readerModal').classList.add('active');
+      }
+
+      function closeLiveReader() {
+        document.getElementById('readerModal').classList.remove('active');
+      }
+
+      function handleModalChat() {
+        const input = document.getElementById('modalInput');
+        const text = input.value.trim();
+        if (!text) return;
+
+        const chat = document.getElementById('modalChat');
+        const uMsg = document.createElement('div');
+        uMsg.className = 'msg-user';
+        uMsg.textContent = text;
+        chat.appendChild(uMsg);
+
+        input.value = '';
+        chat.scrollTop = chat.scrollHeight;
+
+        setTimeout(() => {
+          const aiMsg = document.createElement('div');
+          aiMsg.className = 'msg-ai';
+          aiMsg.innerHTML = '⚡ <strong>Nexus AI Response:</strong><br/>Chapter 1 explains how autonomous RAG pipelines index book chapters into vector embeddings for instant, context-aware answers.';
+          chat.appendChild(aiMsg);
+          chat.scrollTop = chat.scrollHeight;
+        }, 500);
+      }
+    </script>
+  </body>
+</html>
+
+
+
+
+
+
