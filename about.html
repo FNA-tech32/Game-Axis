@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Learn more about Game Axis and the way we build thoughtful digital experiences." />
+    <title>Game Axis | About</title>
+    <link rel="stylesheet" href="main-v2.css" />
+  </head>
+  <body>
+    <canvas id="particleCanvas"></canvas>
+    <div class="aurora aurora-one"></div>
+    <div class="aurora aurora-two"></div>
+    <div class="cursor-glow" aria-hidden="true"></div>
+
+    <header class="site-header">
+      <a href="index.html" class="brand">
+        <span class="brand-text">Game Axis</span>
+      </a>
+      <button class="mobile-nav-toggle" aria-label="Toggle navigation menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      </button>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="index.html"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" height="1em" width="1em" xmlns="https://www.w3.org/2000/svg" style="margin-bottom: -2px;"><path d="M946.5 505L560.1 118.8l-25.9-25.9a31.5 31.5 0 0 0-44.4 0L77.5 505a63.9 63.9 0 0 0-18.8 46c.4 35.2 29.7 63.3 64.9 63.3h42.5V940h691.8V614.3h43.4c17.1 0 33.2-6.7 45.3-18.8a63.6 63.6 0 0 0 18.7-45.3c0-17-6.7-33.1-18.8-45.2zM568 868H456V664h112v204zM704 868V614.3H320V868h-72V536h528v332h-72z"></path></svg> Home</a>
+        <a href="about.html" class="active"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 448 512" height="1em" width="1em" xmlns="https://www.w3.org/2000/svg" style="margin-bottom: -2px;"><path d="M224 256c70.7 0 128-57.3 128-128S294.7 0 224 0 96 57.3 96 128s57.3 128 128 128zm89.6 32h-16.7c-22.2 10.2-46.9 16-72.9 16s-50.6-5.8-72.9-16h-16.7C60.2 288 0 348.2 0 422.4V464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48v-41.6c0-74.2-60.2-134.4-134.4-134.4z"></path></svg> About</a>
+        <a href="projects.html"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" height="1em" width="1em" xmlns="https://www.w3.org/2000/svg" style="margin-bottom: -2px;"><path d="M880 298.4H521L403.7 186.2a8.15 8.15 0 0 0-5.5-2.2H144c-17.7 0-32 14.3-32 32v592c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V330.4c0-17.7-14.3-32-32-32zM840 768H184V256h188.5l119.6 114.4H840V768z"></path></svg> Projects</a>
+        <a href="team.html"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" height="1em" width="1em" xmlns="https://www.w3.org/2000/svg" style="margin-bottom: -2px;"><path d="M832 64H192c-17.7 0-32 14.3-32 32v832c0 17.7 14.3 32 32 32h640c17.7 0 32-14.3 32-32V96c0-17.7-14.3-32-32-32zm-600 72h560v208H232V136zm560 480H232V408h560v208zm0 272H232V680h560v208zM304 240h416v-48H304v48zm0 272h416v-48H304v48zm0 272h416v-48H304v48z"></path></svg> Team</a>
+        <a href="contact.html"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" height="1em" width="1em" xmlns="https://www.w3.org/2000/svg" style="margin-bottom: -2px;"><path d="M904 512h-56c-4.4 0-8 3.6-8 8v320H184V184h320c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H144c-17.7 0-32 14.3-32 32v736c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V520c0-4.4-3.6-8-8-8z"></path></svg> Contact</a>
+        <a href="https://github.com/game-axis" target="_blank" class="fork-btn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+        </a>
+      </nav>
+    </header>
+
+    <main class="page-shell">
+      <section class="reveal">
+        <p class="eyebrow">About Game Axis</p>
+        <h1 class="page-title">Engineering High-Performance Web Apps & AI Solutions</h1>
+        <p class="hero-text">Game Axis is an engineering-driven digital studio based in Karachi, Pakistan. We collaborate to deliver world-class MERN web applications, e-commerce platforms, and AI-integrated solutions that power business growth worldwide.</p>
+        <div class="hero-actions" style="margin-top: 1.2rem;">
+          <a href="projects.html" class="btn btn-primary">Explore Featured Projects ↗</a>
+          <a href="contact.html" class="btn btn-secondary">Get in Touch</a>
+        </div>
+      </section>
+
+      <section class="info-grid reveal">
+        <article class="info-card">
+          <h3><span class="card-icon">🎯</span> Our Mission</h3>
+          <p>We blend cutting-edge technology with thoughtful design to create digital experiences that feel premium, are built to scale, and deliver measurable results for ambitious brands worldwide.</p>
+        </article>
+        <article class="info-card">
+          <h3><span class="card-icon">⚡</span> Our Expertise</h3>
+          <p>From MERN stack development and AI integration to CMS management and digital marketing strategies, our diverse skillset ensures every project is handled with technical excellence.</p>
+        </article>
+        <article class="info-card">
+          <h3><span class="card-icon">⚙</span> Our Approach</h3>
+          <p>We start with clarity, execute with craftsmanship, and deliver with confidence. Every project undergoes rigorous quality checks and strategic optimization for real-world performance.</p>
+        </article>
+      </section>
+
+      <section class="detail-section reveal">
+        <article class="detail-card">
+          <h3>The Team</h3>
+          <p>Game Axis is powered by six specialized professionals, each bringing unique expertise to the table:</p>
+          <ul style="list-style: none; padding: 0; margin-top: 1rem; color: var(--muted);">
+            <li style="margin-bottom: 0.8rem;"><strong style="color: var(--text);">M Raza Rajput — CEO & Full Stack Lead (AI Integration)</strong><br/><em>Edu: Intermediate completed in CS | Exp: Almost 2 years</em><br/>Architecting scalable MERN stack web applications and integrating advanced AI capabilities for global clients.</li>
+            <li style="margin-bottom: 0.8rem;"><strong style="color: var(--text);">Abdul Rafay — Graphic Designer</strong><br/><em>Edu: Doing intermediate in CS | Exp: 6 months</em><br/></li>
+            <li style="margin-bottom: 0.8rem;"><strong style="color: var(--text);">Hamza Shamsi — Full Stack Developer</strong><br/><em>Edu: Inter completed in commerce | Exp: 1 year</em><br/></li>
+            <li style="margin-bottom: 0.8rem;"><strong style="color: var(--text);">Aliyan Kaleem — Frontend Developer & Growth Marketer</strong><br/><em>Edu: Doing intermediate | Exp: Fresh</em><br/></li>
+            <li style="margin-bottom: 0.8rem;"><strong style="color: var(--text);">Abdul Rehman — MERN Stack Developer</strong><br/>Full-stack developer focused on strong core logic building, intuitive UI/UX design, and MERN integration.</li>
+            <li><strong style="color: var(--text);">M Talha Khan — WordPress Developer & SEO Expert</strong><br/>Specializes in building dynamic WordPress websites and driving organic growth through advanced technical SEO strategies.</li>
+          </ul>
+        </article>
+        <article class="detail-card">
+          <h3>Why Choose Game Axis</h3>
+          <ul style="list-style: none; padding: 0; color: var(--muted);">
+            <li style="margin-bottom: 0.8rem; padding-left: 1.5rem; position: relative;"><span style="position: absolute; left: 0; color: var(--accent);">✓</span> <strong style="color: var(--text);">Full-Stack Capability:</strong> From backend systems to frontend UI, we handle every layer.</li>
+            <li style="margin-bottom: 0.8rem; padding-left: 1.5rem; position: relative;"><span style="position: absolute; left: 0; color: var(--accent);">✓</span> <strong style="color: var(--text);">AI Integration:</strong> Cutting-edge AI solutions for modern business challenges.</li>
+            <li style="margin-bottom: 0.8rem; padding-left: 1.5rem; position: relative;"><span style="position: absolute; left: 0; color: var(--accent);">✓</span> <strong style="color: var(--text);">Responsive & Fast:</strong> Every project optimized for speed, performance, and all devices.</li>
+            <li style="margin-bottom: 0.8rem; padding-left: 1.5rem; position: relative;"><span style="position: absolute; left: 0; color: var(--accent);">✓</span> <strong style="color: var(--text);">Strategic Digital Marketing:</strong> Not just building—building for growth and engagement.</li>
+            <li style="margin-bottom: 0.8rem; padding-left: 1.5rem; position: relative;"><span style="position: absolute; left: 0; color: var(--accent);">✓</span> <strong style="color: var(--text);">Worldwide Reach:</strong> Based in Karachi, serving clients globally with timezone-friendly support.</li>
+          </ul>
+        </article>
+      </section>
+
+      <section class="info-grid reveal">
+        <article class="info-card">
+          <h3><span class="card-icon">🛠</span> Technologies We Mastered</h3>
+          <p><strong>Backend:</strong> Node.js, Express, MongoDB, PHP, Python, Laravel<br/><strong>Frontend:</strong> React, Modern CSS, JavaScript<br/><strong>CMS:</strong> WordPress, Webflow, Framer<br/><strong>AI & Advanced:</strong> AI Integration, Cloud Solutions, Performance Optimization</p>
+        </article>
+        <article class="info-card">
+          <h3><span class="card-icon">📦</span> What We Deliver</h3>
+          <p>Polished, production-ready digital products. Custom web applications, responsive websites, AI-powered solutions, and strategic digital presence—all built with attention to detail and a focus on your business objectives.</p>
+        </article>
+        <article class="info-card">
+          <h3><span class="card-icon">🚀</span> Let's Build Together</h3>
+          <p>Whether you're a startup with a bold vision or an established brand looking to innovate, we're ready to collaborate. Contact us to discuss your project and let's create something memorable.</p>
+        </article>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>© <span id="year"></span> Game Axis. All rights reserved.</p>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/923292179603?text=Hi%20Game%20Axis,%20I%20want%20to%20discuss%20a%20project" target="_blank" class="whatsapp-float" aria-label="Chat on WhatsApp">
+      <svg class="whatsapp-icon" viewBox="0 0 24 24">
+        <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+      </svg>
+      <span>Quick WhatsApp Chat</span>
+    </a>
+
+    <script src="app.js"></script>
+  </body>
+</html>
+
+
+
+
+
+
